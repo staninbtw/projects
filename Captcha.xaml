@@ -1,0 +1,17 @@
+﻿<Window x:Class="Bank.Captcha"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bank"
+        mc:Ignorable="d"
+        Title="Captcha" WindowStartupLocation="CenterScreen" MinHeight="300" MinWidth="400" MaxHeight="300" MaxWidth="400" Loaded="Window_Loaded" WindowStyle="None">
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+        <TextBlock x:Name="rnd_text" FontSize="50" FontFamily="Corbel Light" TextAlignment="Center" Height="100" />
+        <TextBox Height="25" Width="170" Margin="0,10,0,0" VerticalAlignment="Bottom" x:Name="tb_captcha" CharacterCasing="Upper"/>
+            <Button Click="Imchel_click" Margin="0,10,0,0" Height="25" Width="150" Content="Я человек" VerticalAlignment="Bottom"/>
+            <Button Click="Reverse_click"  Margin="0,10,0,0" Height="20" Width="120" VerticalAlignment="Bottom" Content="Обновить" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF041EFF"/>
+        </StackPanel>
+    </Grid>
+</Window>

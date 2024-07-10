@@ -1,0 +1,147 @@
+﻿<Window x:Name="Get" x:Class="Bank.Home"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bank"
+        mc:Ignorable="d"
+        Icon="image/Home.ico"
+        Title="Home" Height="450" Width="500" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFFF801D" Offset="0.891"/>
+                <GradientStop Color="#FFFC9F57" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <Button Margin="10,0,0,0" Click="card_click" Content="Карты" Foreground="#ffffff" BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Century Gothic" FontSize="14"/>
+            <Button Margin="10,0,0,0" Click="credit_click" Content="Кредиты"  BorderBrush="{x:Null}"  Foreground="#ffffff" Background="{x:Null}" FontFamily="Century Gothic" FontSize="14"/>
+            <Button Click="popolnenie_click"  Margin="10,0,0,0" Content="Пополнение и снятие"  Foreground="#ffffff"  BorderBrush="{x:Null}" Background="{x:Null}" FontFamily="Century Gothic" FontSize="14"/>
+            <Button Margin="10,0,0,0" Click="perevod_2" Content="Переводы"  BorderBrush="{x:Null}"  Foreground="#ffffff" Background="{x:Null}" FontFamily="Century Gothic" FontSize="14"/>
+            <Button Margin="10,0,0,0" Click="Info" Content="О программе"  BorderBrush="{x:Null}"  Foreground="#ffffff" Background="{x:Null}" FontFamily="Century Gothic" FontSize="14"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" x:Name="perevodi_view" Visibility="Collapsed">
+            <TextBlock  Foreground="#ffffff" Text="Выберите карту" TextAlignment="Center" FontFamily="Century Gothic"/>
+            <ListBox x:Name="cardlist2"  HorizontalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#7442c8" CornerRadius="10" Margin="3">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <Image Height="100" Source="{Binding Picture}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Margin="5">
+                                    <TextBlock Text="{Binding Name}" Foreground="#ffffff" FontWeight="Bold"/>
+                                    <TextBlock Text=" Номер карты: " FontFamily="Century Gothic"  Foreground="#ffffff"/>
+                                    <TextBlock Text="{Binding Number}" Foreground="#ffffff" FontWeight="Bold"/>
+                                    <TextBlock Text=" Счет: " FontFamily="Century Gothic"  Foreground="#ffffff"/>
+                                    <TextBlock Text="{Binding Money}" FontWeight="Bold" Foreground="#ffffff"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock  Foreground="#ffffff" Text="Введеите номер карты получателя" TextAlignment="Center" FontFamily="Century Gothic"/>
+            <Border Margin="0 10 0 2" Width="200" CornerRadius="10" Background ="White">
+                <TextBox PreviewTextInput="tb_numcard_PreviewTextInput" x:Name="tb_numcard" MaxLength="16" Width="200" Background="Transparent" BorderBrush="{x:Null}"/>
+            </Border>
+            <TextBlock x:Name="nocard2" Width="200" TextAlignment="Center" FontSize="11" FontFamily="Century Gothic"/>
+            <TextBlock  Foreground="#ffffff" Text="Введите сумму" Width="200" TextAlignment="Center" FontFamily="Century Gothic"/>
+            <Border Margin="0 10 0 10" Width="200" CornerRadius="10" Background ="White">
+                <TextBox PreviewTextInput="sum_tb2_PreviewTextInput" Background="Transparent" x:Name="sum_tb2" BorderBrush="{x:Null}"/>
+            </Border>
+            <Border Background="#7442c8" Width="150" CornerRadius="10">
+                <Button FontSize="14" Click="perevod_1" Foreground="#ffffff"  Content="Перевести" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Century Gothic"/>
+            </Border>
+        </StackPanel>
+        <StackPanel x:Name="view_credit" VerticalAlignment="Center" Visibility="Collapsed">
+            <TextBlock  Foreground="#ffffff" Text="Введеите сумму кредита" Width="200" TextAlignment="Center" FontFamily="Century Gothic"/>
+            <Border Margin="0 10 0 2" Width="200" CornerRadius="10" Background ="White">
+                <TextBox MaxLength="8" x:Name="summa_credita" PreviewTextInput="summa_credita_PreviewTextInput" TextChanged="srok_credita" Width="200" Background="Transparent" BorderBrush="{x:Null}"/>
+            </Border>
+            <TextBlock Text="Срок кредита" TextAlignment="Center" Foreground="#ffffff"/>
+            <Border Margin="0 0 0 5" Width="84" CornerRadius="5" Background="#7442c8">
+                <ListBox x:Name="mesyac_list" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" FontFamily="Century Gothic" SelectionChanged="mesyac_list_SelectionChanged">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </Border>
+            <Border Background="#7442c8" Width="150" CornerRadius="10">
+                <Button FontSize="14" Foreground="#ffffff" Content="Оформить кредит" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Century Gothic"/>
+            </Border> 
+            <TextBlock Margin="0 5 0 0" x:Name="sum_mesyac" TextAlignment="Center" Foreground="White" FontFamily="Century Gothic" FontSize="11"/>
+            <Border Background="#7442c8" Margin=" 0 5 0 0" Width="150" CornerRadius="10">
+                <Button FontSize="14" Foreground="#ffffff" Content="Погасить" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Century Gothic"/>
+            </Border>
+            <ListBox HorizontalAlignment="Left" x:Name="credit_list" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" FontFamily="Century Gothic">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="Red" CornerRadius="10" Margin="3">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Текущий кредит:" FontFamily="Century Gothic"  Foreground="#ffffff"/>
+                                <Label Content="{Binding Credit}" Foreground="#ffffff" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox HorizontalAlignment="Left" x:Name="creditoff_list" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" FontFamily="Century Gothic">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="Green" CornerRadius="10" Margin="3">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Погашеный кредит:" FontFamily="Century Gothic"  Foreground="#ffffff"/>
+                                <Label Content="{Binding off}" Foreground="#ffffff" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        <StackPanel x:Name="view_poplnit" VerticalAlignment="Center" Visibility="Collapsed">
+            <TextBlock  Foreground="#ffffff" Text="Введеите номер карты" Width="200" TextAlignment="Center" FontFamily="Century Gothic"/>
+            <Border Margin="0 10 0 2" Width="200" CornerRadius="10" Background ="White">
+                <TextBox PreviewTextInput="number_card_PreviewTextInput" MaxLength="16" x:Name="number_card" Width="200" Background="Transparent" BorderBrush="{x:Null}"/>
+            </Border>
+            <TextBlock x:Name="nocard" Width="200" TextAlignment="Center" FontSize="11" FontFamily="Century Gothic"/>
+            <TextBlock  Foreground="#ffffff" Text="Введите сумму" Width="200" TextAlignment="Center" FontFamily="Century Gothic"/>
+            <Border Margin="0 10 0 10" Width="200" CornerRadius="10" Background ="White">
+            <TextBox PreviewTextInput="sum_tb_PreviewTextInput" Background="Transparent" x:Name="sum_tb" BorderBrush="{x:Null}"/>
+            </Border>
+                <Border Background="#7442c8" Width="150" CornerRadius="10">
+                <Button FontSize="14" Foreground="#ffffff" Click="popolnit_click" Content="Пополнить" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Century Gothic"/>
+            </Border>
+            <Border Background="#7442c8" Margin=" 0 5 0 0" Width="150" CornerRadius="10">
+                <Button FontSize="14" Foreground="#ffffff" Click="snyat_click" Content="Снять" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Century Gothic">
+                </Button>
+            </Border>
+        </StackPanel>
+        <StackPanel>
+        </StackPanel>
+        <ListBox Height="350" x:Name="cardlist" HorizontalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="#7442c8" CornerRadius="10" Margin="3">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Image Height="150" Source="{Binding Picture}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="{Binding Name}" Foreground="#ffffff" FontWeight="Bold"/>
+                                <TextBlock Text="Номер карты:" FontFamily="Century Gothic"  Foreground="#ffffff"/>
+                                <Label Content="{Binding Number}" Foreground="#ffffff" FontWeight="Bold"/>
+                                <TextBlock Text="Счет:" FontFamily="Century Gothic"  Foreground="#ffffff"/>
+                                <Label Content="{Binding Money}" FontWeight="Bold" Foreground="#ffffff"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>

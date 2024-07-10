@@ -1,0 +1,24 @@
+﻿<Window x:Class="Bank.Confirmmail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bank"
+        mc:Ignorable="d"
+        Icon="/image/Email.ico"
+        Title="Подтверждение почты" MinHeight="300" MinWidth="300" MaxHeight="300" MaxWidth="300" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <Label Content="Введите email" HorizontalAlignment="Center"/>
+            <TextBox x:Name="mail_tb" Width="150" Text="" Margin="0,0,0,0" Height="20" TextChanged="conf_tb_TextChanged">
+                <TextBox.Background>
+                    <ImageBrush ImageSource="/image/Email.ico" AlignmentX="Left" Stretch="Uniform" />
+                </TextBox.Background>
+            </TextBox>
+            <Button x:Name="send_btn" Click="send_click" Width="150" Margin="0,5,0,5" Height="25" Content="Отправить"/>
+            <Label Content="Введите код" HorizontalAlignment="Center" IsEnabled="False" x:Name="lb_kod"/>
+            <TextBox x:Name="conf_tb" Height="20" Width="150" MaxLength="6" IsEnabled="False"/>
+            <Button x:Name="conf_btn" Click="confirm_mail" Width="150" Margin="0,5,0,5" Height="25" Content="Подтвердить" IsEnabled="False"/>
+        </StackPanel>
+    </Grid>
+</Window>

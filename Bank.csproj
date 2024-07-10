@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="authorithation.png" />
+    <None Remove="card gold.png" />
+    <None Remove="card silver.png" />
+    <None Remove="Email.ico" />
+    <None Remove="Home.ico" />
+    <None Remove="image\authorithation.png" />
+    <None Remove="image\card silver.png" />
+    <None Remove="image\Email.ico" />
+    <None Remove="image\Home.ico" />
+    <None Remove="image\password.ico" />
+    <None Remove="image\reg.ico" />
+    <None Remove="password.ico" />
+    <None Remove="reg.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="image\authorithation.png" />
+    <Resource Include="image\card gold.png" />
+    <Resource Include="image\card silver.png" />
+    <Resource Include="image\Email.ico" />
+    <Resource Include="image\Home.ico" />
+    <Resource Include="image\password.ico" />
+    <Resource Include="image\reg.ico" />
+  </ItemGroup>
+
+</Project>
